@@ -6,59 +6,374 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      max-width: 800px;
+      max-width: 820px;
       margin: 2rem auto;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
       padding: 1rem;
+      color: #1f2d2a;
     }
     h1 {
       color: #2c3e50;
     }
+    h2 {
+      color: #2c3e50;
+      font-size: 1.15rem;
+      margin-top: 2rem;
+    }
     hr {
       margin: 3rem 0;
+      border: 0;
+      border-top: 1px solid #d9e3e0;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid #d9e3e0;
+      padding: 0.5rem 0.65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f1f7f5;
+    }
+    code {
+      background: #f1f7f5;
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    .note {
+      background: #f1f7f5;
+      border-left: 4px solid #0e9f87;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+    }
+    ul {
+      padding-left: 1.3rem;
     }
   </style>
 </head>
 <body>
+
   <h1>Kebijakan Privasi - Duniawi</h1>
-  <p><strong>Terakhir diperbarui:</strong> 21 Juli 2025</p>
+  <p><strong>Terakhir diperbarui:</strong> 6 November 2026<br>
+     <strong>Berlaku untuk:</strong> Duniawi versi 1.2.0 ke atas (paket <code>com.kodingkita.duniawi</code>)</p>
 
   <p><em>Bahasa Indonesia</em></p>
-  <p><strong>1. Pengumpulan dan Penggunaan Informasi</strong><br>
-    Duniawi tidak mengumpulkan data pribadi pengguna. Seluruh data disimpan secara lokal di perangkat pengguna. Namun, aplikasi ini menggunakan layanan pihak ketiga yaitu Firebase yang dapat mengumpulkan informasi non-pribadi untuk analitik dan performa.</p>
 
-  <p><strong>2. Layanan Pihak Ketiga</strong><br>
-    Duniawi menggunakan Firebase: <a href="https://firebase.google.com/support/privacy" target="_blank">https://firebase.google.com/support/privacy</a></p>
+  <h2>1. Prinsip dasar</h2>
+  <p>Duniawi adalah aplikasi pencatatan keuangan pribadi yang berjalan di perangkatmu.
+     Aplikasi ini <strong>tidak punya akun, tidak punya login, dan tidak punya server milik
+     pengembang</strong>. Seluruh catatan keuangan, dompet, daftar belanja, catatan hutang-piutang,
+     dan foto yang kamu simpan berada di penyimpanan privat aplikasi di perangkatmu sendiri.
+     Pengembang tidak punya cara untuk melihat data itu.</p>
+  <p>Ada <strong>dua pengecualian</strong> di mana data meninggalkan perangkat, dan dua-duanya
+     dijelaskan terpisah di bawah: analitik penggunaan (bagian 3) dan fitur opsional
+     <em>Baca struk pakai AI</em> (bagian 4).</p>
 
-  <p><strong>3. Keamanan</strong><br>
-    Tidak ada data yang dikirimkan oleh pengembang, namun pengguna disarankan mengamankan perangkatnya.</p>
+  <h2>2. Data yang disimpan di perangkat (tidak dikirim ke mana pun)</h2>
+  <ul>
+    <li>Transaksi, nominal, dompet, dan alokasi uang.</li>
+    <li>Daftar belanja dan itemnya.</li>
+    <li>Catatan hutang dan piutang, termasuk nama orang yang kamu tulis sendiri.</li>
+    <li>Foto struk dan foto bukti pembayaran.</li>
+    <li>Berkas backup yang kamu buat sendiri (ZIP berisi data dan foto). Berkas ini
+        tersimpan di lokasi yang kamu pilih; kalau kamu membagikannya, kamu yang menentukan
+        ke mana berkas itu pergi.</li>
+  </ul>
+  <p><strong>Akses kontak (izin <code>READ_CONTACTS</code>):</strong> hanya dipakai untuk
+     menyarankan nama saat kamu mengisi catatan hutang-piutang. Daftar kontakmu dibaca di
+     perangkat dan <strong>tidak pernah dikirim ke mana pun</strong>.</p>
+  <p><strong>Kamera (izin <code>CAMERA</code>):</strong> hanya dipakai saat kamu memotret
+     struk atau bukti pembayaran. Fitur ini bisa jalan dari galeri juga, jadi kamera tidak
+     wajib ada di perangkatmu.</p>
 
-  <p><strong>4. Perubahan Kebijakan</strong><br>
-    Kebijakan ini dapat berubah sewaktu-waktu. Disarankan untuk memeriksa halaman ini secara berkala.</p>
+  <h2>3. Analitik (Firebase Analytics)</h2>
+  <p>Duniawi memakai Google Firebase Analytics untuk mengetahui fitur mana yang dipakai dan
+     di mana aplikasi gagal, supaya aplikasinya bisa diperbaiki.</p>
+  <p><strong>Yang dikirim hanya BENTUK perilaku, bukan isi datamu.</strong> Besaran dikirim
+     sebagai label rentang (misalnya <code>1-5</code>, <code>16-30</code>,
+     <code>3-8s</code>), bukan angka aslinya. Secara spesifik, Duniawi
+     <strong>tidak pernah</strong> mengirim ke analitik:</p>
+  <ul>
+    <li>nominal uang, saldo, atau total transaksi,</li>
+    <li>nama dompet, catatan, atau teks yang kamu tulis,</li>
+    <li>nama kontak, nomor telepon, atau isi pesan pengingat,</li>
+    <li>kata kunci pencarian,</li>
+    <li>foto, atau</li>
+    <li>API key.</li>
+  </ul>
+  <p>Duniawi juga <strong>menonaktifkan Advertising ID</strong> (izin <code>AD_ID</code>
+     dihapus dari aplikasi) dan tidak menampilkan iklan.</p>
+  <p>Kebijakan privasi Firebase:
+     <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">https://firebase.google.com/support/privacy</a></p>
 
-  <p><strong>5. Kontak</strong><br>
-    Jika ada pertanyaan, hubungi kami di: <a href="mailto:kodingkita.com@gmail.com">kodingkita.com@gmail.com</a></p>
+  <h2>4. Fitur opsional: Baca struk pakai AI (API key milikmu sendiri)</h2>
+
+  <div class="note">
+    <strong>Ini satu-satunya bagian Duniawi yang mengirim FOTO keluar dari perangkatmu.</strong>
+    Fitur ini <strong>mati secara bawaan</strong> dan tidak bisa menyala tanpa kamu
+    menempelkan API key milikmu sendiri.
+  </div>
+
+  <p>Duniawi bisa membaca struk dengan dua cara:</p>
+  <ol>
+    <li><strong>Di perangkat (bawaan).</strong> Struk dibaca memakai Google ML Kit yang
+        modelnya ikut di dalam aplikasi. Tidak butuh internet dan
+        <strong>tidak ada apa pun yang keluar dari perangkat</strong>.</li>
+    <li><strong>Lewat model AI pilihanmu (opsional).</strong> Kalau kamu menyalakan fitur ini
+        dan menempelkan API key milikmu, <strong>foto struk dikirim</strong> ke penyedia model
+        yang kamu pilih untuk dibaca.</li>
+  </ol>
+
+  <p><strong>Apa yang dikirim, dan risikonya.</strong> Yang dikirim adalah
+     <strong>foto struknya</strong> — dan foto struk bisa memuat nama toko, alamat toko,
+     tanggal dan jam belanja, daftar barang yang kamu beli, nominal yang kamu bayar, serta
+     apa pun yang ikut terfoto di sekitarnya. Kalau foto tidak tersedia, Duniawi mengirim
+     teks hasil pembacaan di perangkat yang sudah diredaksi lebih dulu (alamat, nomor
+     telepon, nama kasir, nomor kartu, tanggal, dan jam dibuang).</p>
+
+  <p><strong>Ke mana dikirim.</strong> Langsung dari perangkatmu ke penyedia yang kamu pilih,
+     memakai HTTPS. Permintaan ini <strong>tidak melewati server pengembang</strong> —
+     pengembang tidak punya server dan tidak pernah melihat foto, teks, maupun API key-mu.</p>
+
+  <table>
+    <tr>
+      <th>Penyedia yang kamu pilih</th>
+      <th>Alamat tujuan</th>
+      <th>Kebijakan privasi penyedia</th>
+    </tr>
+    <tr>
+      <td>Google Gemini</td>
+      <td><code>generativelanguage.googleapis.com</code></td>
+      <td><a href="https://ai.google.dev/gemini-api/terms" target="_blank" rel="noopener">ai.google.dev/gemini-api/terms</a></td>
+    </tr>
+    <tr>
+      <td>OpenRouter</td>
+      <td><code>openrouter.ai</code></td>
+      <td><a href="https://openrouter.ai/privacy" target="_blank" rel="noopener">openrouter.ai/privacy</a></td>
+    </tr>
+    <tr>
+      <td>OpenAI</td>
+      <td><code>api.openai.com</code></td>
+      <td><a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener">openai.com/policies/privacy-policy</a></td>
+    </tr>
+  </table>
+
+  <p><strong>Penting:</strong> begitu foto itu sampai di penyedia model, yang berlaku adalah
+     kebijakan penyedia tersebut, <strong>bukan kebijakan ini</strong>. Berapa lama mereka
+     menyimpannya, apakah dipakai untuk melatih model, dan di negara mana datanya diproses —
+     itu ditentukan oleh penyedia dan oleh jenis akun/API key yang kamu pakai. Baca
+     kebijakan penyedia pilihanmu sebelum menyalakan fitur ini. Duniawi tidak bisa
+     mengendalikan atau menghapus data yang sudah ada di sisi penyedia.</p>
+
+  <p><strong>API key-mu.</strong> Disimpan terenkripsi di perangkat memakai Android Keystore
+     (<code>flutter_secure_storage</code>), satu slot per penyedia. Key hanya dikirim ke
+     penyedia yang memilikinya sebagai tanda autentikasi, dan tidak pernah dikirim ke
+     pengembang maupun ke penyedia lain. Key tidak pernah ditampilkan kembali di layar.
+     Kamu bisa menghapusnya kapan saja dari <em>Setelan → Scan Struk AI</em>.</p>
+
+  <p><strong>Cara mematikan.</strong> Matikan sakelar <em>Baca struk pakai AI</em> di
+     Setelan, atau hapus API key-nya. Setelah itu tidak ada lagi apa pun yang keluar dari
+     perangkat, dan pembacaan struk kembali sepenuhnya di perangkat. Mematikan fitur ini
+     tidak menghilangkan fungsi apa pun selain tingkat akurasi pembacaan.</p>
+
+  <p><strong>Membuat API key.</strong> Persyaratan pembuatan API key ditentukan oleh
+     masing-masing penyedia dan bisa berbeda tiap negara (misalnya verifikasi umur, negara,
+     atau jenis akun). Hal itu di luar kendali Duniawi.</p>
+
+  <h2>5. Anak-anak</h2>
+  <p>Duniawi tidak ditujukan untuk anak di bawah 13 tahun dan tidak mengumpulkan data dari
+     mereka secara sengaja. Fitur <em>Baca struk pakai AI</em> mensyaratkan API key dari
+     penyedia pihak ketiga, yang punya batasan umurnya sendiri.</p>
+
+  <h2>6. Keamanan</h2>
+  <ul>
+    <li>Data aplikasi berada di penyimpanan privat aplikasi, dilindungi oleh sandbox Android.</li>
+    <li>API key disimpan di Android Keystore, bukan di penyimpanan biasa.</li>
+    <li>Semua pengiriman data ke luar perangkat memakai HTTPS (terenkripsi saat transit).</li>
+    <li>Tersedia kunci aplikasi memakai biometrik/PIN perangkat yang bisa kamu nyalakan sendiri.</li>
+    <li>Karena tidak ada akun dan tidak ada server, tidak ada basis data pengguna di sisi
+        pengembang yang bisa bocor.</li>
+  </ul>
+
+  <h2>7. Menghapus data</h2>
+  <p>Tidak ada akun yang perlu dihapus. Kamu bisa menghapus data langsung di aplikasi (per
+     catatan, per foto, atau per API key), atau menghapus seluruhnya dengan
+     <em>menghapus aplikasi</em> atau <em>Hapus data</em> di pengaturan Android. Data yang
+     sudah pernah dikirim ke penyedia model (bagian 4) harus kamu urus lewat penyedia
+     tersebut. Untuk data analitik, hubungi pengembang di alamat pada bagian 9.</p>
+
+  <h2>8. Perubahan kebijakan</h2>
+  <p>Kebijakan ini bisa berubah seiring aplikasi berkembang. Tanggal "Terakhir diperbarui"
+     di atas selalu menandai versi yang berlaku. Perubahan yang menyangkut data keluar
+     perangkat akan dinyatakan juga di dalam aplikasi, pada layar fitur yang bersangkutan.</p>
+
+  <h2>9. Kontak</h2>
+  <p>Pertanyaan atau permintaan terkait privasi:
+     <a href="mailto:kodingkita.com@gmail.com">kodingkita.com@gmail.com</a></p>
 
   <hr>
 
   <h1>Privacy Policy - Duniawi</h1>
-  <p><strong>Last updated:</strong> July 21, 2025</p>
+  <p><strong>Last updated:</strong> 6 November 2026<br>
+     <strong>Applies to:</strong> Duniawi version 1.2.0 and later (package <code>com.kodingkita.duniawi</code>)</p>
 
   <p><em>English Version</em></p>
-  <p><strong>1. Information Collection and Use</strong><br>
-    Duniawi does not collect any personal user data. All data is stored locally on the device. However, the app uses Firebase, which may collect non-personal data for analytics and performance purposes.</p>
 
-  <p><strong>2. Third-Party Services</strong><br>
-    Duniawi uses Firebase: <a href="https://firebase.google.com/support/privacy" target="_blank">https://firebase.google.com/support/privacy</a></p>
+  <h2>1. Core principle</h2>
+  <p>Duniawi is a personal finance app that runs on your device. It has
+     <strong>no accounts, no login, and no developer-operated server</strong>. All of your
+     transactions, wallets, shopping lists, debt records, and photos live in the app's
+     private storage on your own device. The developer has no way to see any of it.</p>
+  <p>There are <strong>two exceptions</strong> where data leaves your device, each described
+     separately below: usage analytics (section 3) and the optional
+     <em>Read receipts with AI</em> feature (section 4).</p>
 
-  <p><strong>3. Security</strong><br>
-    No personal data is transmitted by the developer. Users are advised to secure their own devices appropriately.</p>
+  <h2>2. Data kept on your device (never transmitted)</h2>
+  <ul>
+    <li>Transactions, amounts, wallets, and money allocations.</li>
+    <li>Shopping lists and their items.</li>
+    <li>Debt and receivable records, including names you type yourself.</li>
+    <li>Receipt photos and payment-proof photos.</li>
+    <li>Backup files you create (a ZIP containing your data and photos). The file is saved
+        where you choose; if you share it, you control where it goes.</li>
+  </ul>
+  <p><strong>Contacts access (<code>READ_CONTACTS</code>):</strong> used only to suggest names
+     while you fill in a debt record. Your contacts are read on the device and
+     <strong>never transmitted anywhere</strong>.</p>
+  <p><strong>Camera (<code>CAMERA</code>):</strong> used only when you photograph a receipt or
+     a payment proof. The feature also works from the gallery, so camera hardware is not
+     required.</p>
 
-  <p><strong>4. Changes to This Policy</strong><br>
-    This privacy policy may be updated from time to time. Users are encouraged to review this page periodically.</p>
+  <h2>3. Analytics (Firebase Analytics)</h2>
+  <p>Duniawi uses Google Firebase Analytics to learn which features are used and where the
+     app fails, so it can be improved.</p>
+  <p><strong>Only the SHAPE of behaviour is sent, never your content.</strong> Magnitudes are
+     sent as bucket labels (for example <code>1-5</code>, <code>16-30</code>,
+     <code>3-8s</code>), not real values. Specifically, Duniawi
+     <strong>never</strong> sends to analytics:</p>
+  <ul>
+    <li>monetary amounts, balances, or transaction totals,</li>
+    <li>wallet names, notes, or any text you write,</li>
+    <li>contact names, phone numbers, or reminder message bodies,</li>
+    <li>search queries,</li>
+    <li>photos, or</li>
+    <li>API keys.</li>
+  </ul>
+  <p>Duniawi also <strong>disables the Advertising ID</strong> (the <code>AD_ID</code>
+     permission is removed from the app) and shows no ads.</p>
+  <p>Firebase privacy policy:
+     <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">https://firebase.google.com/support/privacy</a></p>
 
-  <p><strong>5. Contact Us</strong><br>
-    For any questions, contact us at: <a href="mailto:kodingkita.com@gmail.com">kodingkita.com@gmail.com</a></p>
+  <h2>4. Optional feature: Read receipts with AI (your own API key)</h2>
+
+  <div class="note">
+    <strong>This is the only part of Duniawi that sends a PHOTO off your device.</strong>
+    The feature is <strong>off by default</strong> and cannot be enabled without you pasting
+    in your own API key.
+  </div>
+
+  <p>Duniawi can read a receipt two ways:</p>
+  <ol>
+    <li><strong>On device (default).</strong> The receipt is read with Google ML Kit, whose
+        model ships inside the app. No internet is needed and
+        <strong>nothing leaves your device</strong>.</li>
+    <li><strong>Through an AI model you choose (optional).</strong> If you enable this feature
+        and paste your own API key, the <strong>receipt photo is sent</strong> to the model
+        provider you selected to be read.</li>
+  </ol>
+
+  <p><strong>What is sent, and the risk.</strong> What is sent is the
+     <strong>receipt photo</strong> — and a receipt photo can contain the store name, the
+     store address, the date and time of purchase, the list of items you bought, the amount
+     you paid, and anything else caught in the frame. If no photo is available, Duniawi sends
+     the on-device text instead, redacted first (addresses, phone numbers, cashier names,
+     card numbers, dates, and times are stripped).</p>
+
+  <p><strong>Where it is sent.</strong> Directly from your device to the provider you chose,
+     over HTTPS. The request <strong>does not pass through any developer server</strong> —
+     there is none, and the developer never sees your photo, your text, or your API key.</p>
+
+  <table>
+    <tr>
+      <th>Provider you choose</th>
+      <th>Destination host</th>
+      <th>Provider's privacy policy</th>
+    </tr>
+    <tr>
+      <td>Google Gemini</td>
+      <td><code>generativelanguage.googleapis.com</code></td>
+      <td><a href="https://ai.google.dev/gemini-api/terms" target="_blank" rel="noopener">ai.google.dev/gemini-api/terms</a></td>
+    </tr>
+    <tr>
+      <td>OpenRouter</td>
+      <td><code>openrouter.ai</code></td>
+      <td><a href="https://openrouter.ai/privacy" target="_blank" rel="noopener">openrouter.ai/privacy</a></td>
+    </tr>
+    <tr>
+      <td>OpenAI</td>
+      <td><code>api.openai.com</code></td>
+      <td><a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener">openai.com/policies/privacy-policy</a></td>
+    </tr>
+  </table>
+
+  <p><strong>Important:</strong> once the photo reaches the model provider, that provider's
+     policy governs it, <strong>not this one</strong>. How long they retain it, whether it is
+     used to train models, and which country it is processed in are determined by the
+     provider and by the kind of account or API key you use. Read your chosen provider's
+     policy before enabling this feature. Duniawi cannot control or delete data already held
+     by a provider.</p>
+
+  <p><strong>Your API key.</strong> Stored encrypted on the device using the Android Keystore
+     (<code>flutter_secure_storage</code>), in a separate slot per provider. A key is sent
+     only to the provider it belongs to, as an authentication credential, and never to the
+     developer or to any other provider. A saved key is never displayed back on screen. You
+     can delete it at any time from <em>Settings → Scan Struk AI</em>.</p>
+
+  <p><strong>How to turn it off.</strong> Switch off <em>Baca struk pakai AI</em> in Settings,
+     or delete the API key. After that nothing leaves your device again and receipt reading
+     returns to fully on-device. Turning it off removes no functionality other than reading
+     accuracy.</p>
+
+  <p><strong>Creating an API key.</strong> The requirements for creating an API key are set by
+     each provider and can differ by country (for example age verification, country, or
+     account type). That is outside Duniawi's control.</p>
+
+  <h2>5. Children</h2>
+  <p>Duniawi is not directed at children under 13 and does not knowingly collect data from
+     them. The <em>Read receipts with AI</em> feature requires a third-party API key, and
+     those providers enforce their own age requirements.</p>
+
+  <h2>6. Security</h2>
+  <ul>
+    <li>App data lives in the app's private storage, protected by the Android sandbox.</li>
+    <li>API keys are held in the Android Keystore, not in ordinary preferences.</li>
+    <li>All data leaving the device is sent over HTTPS (encrypted in transit).</li>
+    <li>An optional app lock using device biometrics/PIN is available.</li>
+    <li>Because there are no accounts and no server, there is no developer-side user
+        database that could be breached.</li>
+  </ul>
+
+  <h2>7. Deleting your data</h2>
+  <p>There is no account to delete. You can delete data inside the app (per record, per
+     photo, or per API key), or remove everything by <em>uninstalling the app</em> or using
+     <em>Clear data</em> in Android settings. Data already sent to a model provider
+     (section 4) must be handled through that provider. For analytics data, contact the
+     developer at the address in section 9.</p>
+
+  <h2>8. Changes to this policy</h2>
+  <p>This policy may change as the app evolves. The "Last updated" date above always marks
+     the version in force. Any change involving data leaving the device will also be stated
+     inside the app, on the screen of the feature concerned.</p>
+
+  <h2>9. Contact</h2>
+  <p>Privacy questions or requests:
+     <a href="mailto:kodingkita.com@gmail.com">kodingkita.com@gmail.com</a></p>
+
 </body>
 </html>
